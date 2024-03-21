@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: lnwza
+      POSTGRES_PASSWORD: lnwza
+      POSTGRES_DB: mydb
+    ports:
+      - "5555:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: lnwza@lnwza.com
+      PGADMIN_DEFAULT_PASSWORD: lnwza
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+volumes:
+  postgres-data:
